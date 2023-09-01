@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            text-align: center;
+        }
+
+        #results {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tip Calculator</h1>
+        <form>
+            <div class="form-group">
+                <label for="foodAmount">Amount for the Check ($):</label>
+                <input type="number" class="form-control" id="foodAmount" placeholder="Enter the amount">
+            </div>
+            <div class="form-group">
+                <label for="tipPercentage">Tip Percentage (%):</label>
+                <input type="number" class="form-control" id="tipPercentage" placeholder="Enter the tip percentage">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="calculateTip()">Calculate</button>
+        </form>
+        <div id="results">
+            <h2>Results:</h2>
+            <p>Food Amount: $<span id="foodResult"></span></p>
+            <p>Tip Percentage: <span id="tipPercentageResult"></span>%</p>
+            <p>Tip Amount: $<span id="tipAmountResult"></span></p>
+            <p>Total Amount: $<span id="totalAmountResult"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateTip() {
+            // Get user input
+            const food = parseFloat(document.getElementById('foodAmount').value);
+            const tipPercentage = parseFloat(document.getElementById('tipPercentage').value);
+
+            // Calculate tip amount and total
+            const tipAmount = (food * tipPercentage) / 100;
+            const total = food + tipAmount;
+
+            // Display results
+            document.getElementById('foodResult').textContent = food.toFixed(2);
+            document.getElementById('tipPercentageResult').textContent = tipPercentage.toFixed(2);
+            document.getElementById('tipAmountResult').textContent = tipAmount.toFixed(2);
+            document.getElementById('totalAmountResult').textContent = total.toFixed(2);
+
+            // Show results section with animation
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.style.animation = 'fadeIn 1s';
+        }
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
